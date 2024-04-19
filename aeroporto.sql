@@ -37,17 +37,16 @@ ANO year(4) not null,
 QUANTIDADE_ASSENTOS int not null);
 
 create table if not exists VOOS(
-ID_VOO INT (10) primary key,
-ASSENTO varchar(50),
+ID_VOO INT (10),
+ASSENTO varchar (10),
 DATA_PARTIDA date not null,
 DATA_CHEGADA_PREV date not null,
 HORA_PARTIDA time not null,
 HORA_CHEGADA_PREV time not null,
-constraint AERONAVE foreign key (COD_AERONAVE)
-references AERONAVE(COD_AERONAVE),
-constraint AEROPORTOS foreign key (COD_AEROPORTOS_PARTIDA)
+primary key (ID_VOO, ASSENTO),
+constraint AEROPORTOS_VOOS1 foreign key (COD_AEROPORTOS_PARTIDA)
 references AEROPORTOS (COD_AEROPORTOS_PARTIDA),
-constraint AEROPORTOS foreign key (COD_AEROPORTO_CHEGADA)
+constraint AEROPORTOS_VOOS2 foreign key (COD_AEROPORTO_CHEGADA)
 references AEROPORTOS (COD_AEROPORTO_CHEGADA),
 constraint COMPANHIA_AEREA foreign key (ID_COMPANHIA)
 references COMPANHIA_AEREA (ID_COMPANHIA));
@@ -69,6 +68,9 @@ constraint VOOS_COMPANHIA_AEREA foreign key (ID_COMPANHIA)
 references VOOS_COMPANHIA_AEREA (ID_COMPANHIA),
 constraint VOOS foreign key (ASSENTO)
 references VOOS(ASSENTO),
+constraint RESERVA_DE_VOOS foreign key (COD_RESERVA)
+references RESERVA_DE_VOOS(COD_RESERVA));
+
 constraint RESERVA_DE_VOOS foreign key (COD_RESERVA)
 references RESERVA_DE_VOOS(COD_RESERVA));
 
