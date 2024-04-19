@@ -19,4 +19,23 @@ ID_COMPANHIA int(10)primary key,
 NOME varchar(45)not null,
 CNPJ varchar(45)not null);
 
-create table if not exists
+create table if not exists AEROPORTOS(
+COD_AEROPORTOS varchar(45)primary key,
+NOME varchar(45)not null,
+RUA varchar(40)not null,
+BAIRRO varchar (40)not null,
+CIDADE varchar(45)not null,
+ESTADO varchar (45) not null,
+PAIS varchar (100) not null,
+TELEFONE varchar (45) not null);
+
+create table if not exists VOOS(
+ID_VOOS INT(10)primary key,
+ASSENTO varchar(50) primary key,
+DATA_PARTIDA date not null,
+DATA_CHEGADA_PREV date not null,
+HORA_PARTIDA time not null,
+HORA_CHEGADA_PREV time not null,
+constraint AERONAVE foreign key (COD_AERONAVE)
+references AERONAVE(COD_AERONAVE),
+constraint AEROPORTO)
